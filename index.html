@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="[Siggraph Asia 2025] SS4D: Native 4D Generative Model via Structured Spacetime Latents.">
+  <meta name="keywords" content="4D generation, 3D generation, animation, generative model">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SS4D: Native 4D Generative Model via Structured Spacetime Latents</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">SS4D: Native 4D Generative Model via Structured Spacetime Latents</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://lizb6626.github.io/">Zhibing Li</a><sup>*1</sup>,</span>
+            <span class="author-block">
+              <a href="https://kszpxxzmc.github.io/">Mengchen Zhang</a><sup>*2,3</sup>,</span>
+            <span class="author-block">
+              <a href="https://wutong16.github.io/">Tong Wu</a><sup>†4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://sparkstj.github.io/">Jing Tan</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://myownskyw7.github.io/">Jiaqi Wang</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://dahua.site/index.html/">Dahua Lin</a><sup>†1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>The Chinese University of Hong Kong,</span>
+            <span class="author-block"><sup>2</sup>Shanghai Artificial Intelligence Laboratory</span><br>
+            <span class="author-block"><sup>3</sup>Zhejiang University</span>
+            <span class="author-block"><sup>4</sup>Stanford University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- Arxiv Link. -->
+              <span class="link-block">
+                <a href="https://dl.acm.org/doi/10.1145/3763302"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Lizb6626/SS4D"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Model Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/lizb6626/SS4D"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fa-solid fa-file"></i>
+                  </span>
+                  <span>Model</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+        <source src="./static/videos/ss4d_demo_video.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We present SS4D, a native 4D generative model that synthesizes dynamic 3D objects directly from monocular video.
+          </p>
+          <p>
+            Unlike prior approaches that construct 4D representations by optimizing over 3D or video generative models, we train a generator directly on 4D data, achieving high fidelity, temporal coherence, and structural consistency. At the core of our method is a compressed set of structured spacetime latents. Specifically, <strong>(1)</strong> To address the scarcity of 4D training data, we build on a pre-trained single-image-to-3D model, preserving strong spatial consistency. <strong>(2)</strong> Temporal consistency is enforced by introducing dedicated temporal layers that reason across frames. <strong>(3)</strong> To support efficient training and inference over long video sequences, we compress the latent sequence along the temporal axis using factorized 4D convolutions and temporal downsampling blocks. In addition, we employ a carefully designed training strategy to enhance robustness against occlusion and motion blur, leading to high-quality generation.
+          </p>
+          <p>
+            Extensive experiments show that SS4D produces spatio-temporally consistent 4D objects with superior quality and efficiency, significantly outperforming state-of-the-art methods on both synthetic and real-world datasets.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method</h2>
+
+        <img src="./static/images/overview.png"
+             alt="Method Overview" />
+        <div class="content has-text-justified">
+          <p>
+            <strong>Left:</strong> SS4D pipeline. Our method takes a monocular video as input. It extracts a coarse voxel-based structure using a 4D Flow Transformer, then generates spacetime latents through a 4D Sparse Flow Transformer, both incorporating a Temporal Layer to capture temporal consistency. These latents are subsequently decoded into a sequence of 3D Gaussians, forming the final 4D content. 
+          </p>
+          <p>
+            <strong>Right:</strong> Temporal Layer. It combines temporal self-attention with shifted windows and hybrid 1D Rotary Position Embeddings to efficiently model dynamic 4D content and ensure consistency across frames.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{li2025ss4d,
+      author = {Li, Zhibing and Zhang, Mengchen and Wu, Tong and Tan, Jing and Wang, Jiaqi and Lin, Dahua},
+      title = {SS4D: Native 4D Generative Model via Structured Spacetime Latents},
+      year = {2025},
+      issue_date = {December 2025},
+      publisher = {Association for Computing Machinery},
+      address = {New York, NY, USA},
+      volume = {44},
+      number = {6},
+      issn = {0730-0301},
+      url = {https://doi.org/10.1145/3763302},
+      doi = {10.1145/3763302},
+      journal = {ACM Trans. Graph.},
+      month = dec,
+      articleno = {244},
+      numpages = {12},
+      keywords = {4D generation, 3D generation, animation, generative model}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is adapted from the <a
+              href="https://nerfies.github.io">Nerfies project page</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
