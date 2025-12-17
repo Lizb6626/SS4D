@@ -1,4 +1,4 @@
-<h1 align="center">Native 4D Generative Model via Structured Spacetime<br> Latents [TOG (Siggraph Asia 2025 Journal)]</h1>
+<h1 align="center">Native 4D Generative Model via Structured Spacetime Latents<br> [TOG (Siggraph Asia 2025 Journal)]</h1>
 <p align="center"><a href="http://arxiv.org/abs/2512.14284"><img src='https://img.shields.io/badge/arXiv-Paper-red?logo=arxiv&logoColor=white' alt='arXiv'></a>
 <a href='https://lizb6626.github.io/SS4D/'><img src='https://img.shields.io/badge/Project_Page-Website-green?logo=googlechrome&logoColor=white' alt='Project Page'></a>
 <a href='https://huggingface.co/lizb6626/SS4D'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model_Weights-blue'></a>
